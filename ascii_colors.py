@@ -67,16 +67,13 @@ def main():
         if new_image_data[i] == ".":
             new_image_data = new_image_data[:i]+" "+new_image_data[i+1:]
     pixel_count = len(new_image_data)
-    added_length = len("\033[1;30;40m\033[0m 1;30;40m")+1
-    for i in range(len(new_image_data)):
-        for color_index in range(number_of_colors):
-            index = color_index+30
-            if color_info[i] == list_of_colors[color_index]:
-                new_image_data = new_image_data[:i]
-                new_image_data+="\033[1;"+str(index)+";40m"+new_image_data[i]
-                new_image_data+="\033[0m 1;"+str(index)+";40m"+new_image_data[i+1:]
-                break
-    ascii_image = "\n".join([new_image_data[i:(i+new_width)] for i in range(0,pixel_count, added_length*new_width)])
-    print(ascii_image)
+    
+    counter = 0
+    for i in range(pixel_count):
+        if 1:#color_info[i] == list_of_colors[]:
+            print("\033[1;30;40m "+new_image_data[i]+"\033[0m 1;30;40m",end='')
+
+        if counter%new_width == 0:
+            print("\n",end='')
 
 main()
