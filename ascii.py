@@ -40,7 +40,7 @@ def main():
     pixel_count = len(new_image_data)
     ascii_image = "\n".join([new_image_data[i:(i+new_width)] for i in range(0,pixel_count, new_width)])
     print(ascii_image)
-    with open("ascii_image.txt","w") as f:
-        f.write(ascii_image)
+    # with open("ascii_image.txt","w") as f:
+        # f.write(ascii_image)
         
 main()
