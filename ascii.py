@@ -6,7 +6,7 @@ import math
 ASCII_CHARS = ["@", "#", "S", "%", "?", "*", "+", ";", ":", ",", "."]
 N = len(ASCII_CHARS)
 
-#resize image
+# resize image
 def resize_image(image, new_width):
     width, height = image.size
     ratio = height/width
@@ -14,7 +14,7 @@ def resize_image(image, new_width):
     resized_image = image.resize((new_width,new_height))
     return resized_image
 
-# convert pixels
+# convert to shades of grey
 def grayify(image):
     return image.convert("L")
 
@@ -28,7 +28,6 @@ def pixels_to_ascii(image):
 def main():
     new_width = int(input("Enter a new width for the output:\n"))
     path = input("Enter a valid pathname to an image:\n")
-    # path = "/Users/paulcoste/Desktop/bur/img.png"
     try:
         image = PIL.Image.open(path)
     except:
@@ -40,7 +39,5 @@ def main():
     pixel_count = len(new_image_data)
     ascii_image = "\n".join([new_image_data[i:(i+new_width)] for i in range(0,pixel_count, new_width)])
     print(ascii_image)
-    # with open("ascii_image.txt","w") as f:
-        # f.write(ascii_image)
         
 main()
