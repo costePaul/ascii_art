@@ -2,7 +2,6 @@ import PIL
 from PIL import Image
 import math
 import numpy as np
-import webcolors
 import matplotlib
 
 # Global variables
@@ -80,13 +79,4 @@ def main():
     ascii_image = "\n".join([new_image_data[i:(i+new_width)] for i in range(0,pixel_count, added_length*new_width)])
     print(ascii_image)
 
-# main()
-# ['grey','red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white']
-# print("\033[1;30;40m Gray    \033[0m 1;30;40m")
-# print("\033[1;31;40m Red     \033[0m 1;31;40m")
-# print("\033[1;32;40m Green   \033[0m 1;32;40m")
-# print("\033[1;33;40m Yellow  \033[0m 1;33;40m")
-# print("\033[1;34;40m Blue    \033[0m 1;34;40m")
-# print("\033[1;35;40m Magenta \033[0m 1;35;40m")
-# print("\033[1;36;40m Cyan    \033[0m 1;36;40m")
-# print("\033[1;37;40m White   \033[0m 1;37;40m")
+main()
