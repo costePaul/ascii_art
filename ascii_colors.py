@@ -10,6 +10,7 @@ N = len(ASCII_CHARS)
 list_of_colors = ['grey','red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white']
 list_of_rgb = [[128,128,128],[255,0,0],[0,255,0],[255,255,0],[0,0,255],[255,0,255],[0,255,255],[255,255,255]]
 number_of_colors = len(list_of_colors)
+color_counter = [0]*number_of_colors
 
 # resize image
 def resize_image(image, new_width):
@@ -71,25 +72,34 @@ def main():
     counter = 0
     for i in range(pixel_count):
         if color_info[i] == list_of_colors[0]:
-            pixel = "\033[1;30;40m "+new_image_data[i]+"\033[0m"
+            pixel = "\033[1;30;1m "+new_image_data[i]+"\033[0m"
+            color_counter[0]+=1
         elif color_info[i] == list_of_colors[1]:
-            pixel = "\033[1;31;40m "+new_image_data[i]+"\031[0m"
+            pixel = "\033[1;31;1m "+new_image_data[i]+"\033[0m"
+            color_counter[1]+=1
         elif color_info[i] == list_of_colors[2]:
-            pixel = "\033[1;32;40m "+new_image_data[i]+"\031[0m"
+            pixel = "\033[1;32;1m "+new_image_data[i]+"\033[0m"
+            color_counter[2]+=1
         elif color_info[i] == list_of_colors[3]:
-            pixel = "\033[1;33;40m "+new_image_data[i]+"\031[0m"
+            pixel = "\033[1;33;1m "+new_image_data[i]+"\033[0m"
+            color_counter[3]+=1
         elif color_info[i] == list_of_colors[4]:
-            pixel = "\033[1;34;40m "+new_image_data[i]+"\031[0m"
+            pixel = "\033[1;34;1m "+new_image_data[i]+"\033[0m"
+            color_counter[4]+=1
         elif color_info[i] == list_of_colors[5]:
-            pixel = "\033[1;35;40m "+new_image_data[i]+"\031[0m"
+            pixel = "\033[1;35;1m "+new_image_data[i]+"\033[0m"
+            color_counter[5]+=1
         elif color_info[i] == list_of_colors[6]:
-            pixel = "\033[1;36;40m "+new_image_data[i]+"\031[0m"
+            pixel = "\033[1;36;1m "+new_image_data[i]+"\033[0m"
+            color_counter[6]+=1
         else:
-            pixel = "\033[1;37;40m "+new_image_data[i]
+            pixel = "\033[1;37;1m "+new_image_data[i]+"\033[0m"
+            color_counter[7]+=1
         if counter%new_width == 0:
             print(pixel)
         else:
             print(pixel,end='')
         counter += 1
+    # print("\033[1;37;40m",color_counter)
 
 main()
