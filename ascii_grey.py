@@ -1,6 +1,7 @@
 import PIL
 from PIL import Image
 import math
+import argparse
 
 # ascii characters
 ASCII_CHARS = ["@", "#", "S", "%", "?", "*", "+", ";", ":", ",", "."]
@@ -41,9 +42,16 @@ def get_image_directory_and_name(path):
     else :
         return path[:last_slash_index],path[last_slash_index+1:last_dot_index]
 
-def main():
-    new_width = int(input("Enter a new width for the output:\n"))
-    path = input("Enter a valid pathname to an image:\n")
+def main(parser):
+    args = parser.parse_args()
+    if not args.width:
+        new_width = int(input("Enter a new width for the output:\n"))
+    else:
+        new_width = args.width
+    if not args.path:
+        path = input("Enter a valid pathname to an image:\n")
+    else:
+        path = args.path
     try:
         image = PIL.Image.open(path)
     except:
@@ -56,9 +64,18 @@ def main():
     ascii_image = "\n".join([new_image_data[i:(i+new_width)] for i in range(0,pixel_count, new_width)])
     
     # print(ascii_image)
-    dir,name = get_image_directory_and_name(path)
-    result_path = dir+'/'+name+'.txt'
+    if not args.output_file:
+        dir,name = get_image_directory_and_name(path)
+        result_path = dir+'/'+name+'.txt'
+    else:
+        result_path = args.output_file
     with open(result_path, 'w') as f:
-                f.write(ascii_image)
+        f.write(ascii_image)
+    print("Result stored in ",result_path)
 
-main()
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-w", "--width", dest="width", type=int, help="output width")
+    parser.add_argument("-p", "--path", dest="path", type=str, help="image path")
+    parser.add_argument("-o", "--output-file", dest="output_file", type=str, help="output file path")
+    main(parser)
